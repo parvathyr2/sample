@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ASTRA-NET // EXOPLANET TERMINAL</title>
+    <style>
+        /* ---------------------------------------------------- */
+        /* 1. CORE STYLING & RESPONSIVENESS */
+        /* ---------------------------------------------------- */
+        body {
+            /* High-Res Space Background Image */
+            background-image: url('https://eyes.nasa.gov/apps/exo/assets/image/thumbnail/exoplanet/kepler-186-f.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            
+            /* Terminal Text Styling */
+            color: #00FF7F;
+            font-family: 'Courier New', monospace;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Main Content Container */
+        .data-terminal {
+            width: 85%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            /* Semi-transparent dark background for text readability */
+            background-color: rgba(0, 0, 0, 0.85); 
+            border: 2px solid #00FF7F;
+            box-shadow: 0 0 15px #00FF7F; /* Glow effect */
+        }
+
+        /* Simple Media Query for Mobile Responsiveness */
+        @media (max-width: 650px) {
+            .data-terminal {
+                width: 95%; 
+                margin: 20px auto;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em; 
+            }
+        }
+
+        /* ---------------------------------------------------- */
+        /* 2. ELEMENT STYLES */
+        /* ---------------------------------------------------- */
+        h1 {
+            color: #FFD700;
+            text-align: center;
+            border-bottom: 1px solid #00FF7F;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #00BFFF;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px dashed rgba(0, 255, 127, 0.4); 
+        }
+        
+        a {
+            color: #00BFFF;
+            text-decoration: none;
+        }
+
+        /* Style for the date input field */
+        #missionDate {
+            background-color: #0A0A10; 
+            color: #00FF7F; 
+            border: 1px solid #00FF7F; 
+            font-family: 'Courier New', monospace;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="data-terminal">
+
+        <h1>:: PROJECT KEPLER-186F :: HABITAT LOG 01</h1>
+        
+        <h2 style="color: #FFD700; font-size: 1.1em; border-bottom: none;">// VIEW ARCHIVED MISSION LOGS</h2>
+        <label for="missionDate" style="color: #00BFFF;">Select Sol/Date (YYYY-MM-DD): </label>
+        <input type="date" id="missionDate" onchange="updateLog()">
+        
+        <div id="logOutput" style="margin-top: 15px; padding: 10px; border: 1px dashed #00FF7F;">
+            Log for selected date will appear here...
+        </div>
+
+        <hr style="border-color: #00FF7F; margin-top: 30px;">
+        <h2>::: CORE SYSTEM TELEMETRY :::</h2>
+        <table>
+            <thead>
+                <tr style="color: #FFD700;">
+                    <th>METRIC</th>
+                    <th>VALUE</th>
+                    <th>STATUS CODE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Habitable Zone Classification</td>
+                    <td>Terran-Class M</td>
+                    <td>A1/GREEN</td>
+                </tr>
+                <tr>
+                    <td>Atmospheric Pressure (kPa)</td>
+                    <td>**98.7 kPa**</td>
+                    <td>NOMINAL</td>
+                </tr>
+                <tr>
+                    <td>Surface Temperature (Avg)</td>
+                    <td>**18.5° C**</td>
+                    <td>OPTIMAL RANGE</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 style="border-bottom: 1px dashed #00BFFF;">// EVENT LOG - CURRENT CYCLE</h2>
+        <ul style="list-style-type: '>> '; padding-left: 20px;">
+            <li>**[LOG ENTRY]** Terraforming progress at **12%**. Primary atmospheric catalysts functioning.</li>
+            <li>**[LOG ENTRY]** Detected minor seismic activity; structural integrity **99.9%** (verified).</li>
+            <li>**[LOG ENTRY]** Transmitting daily sensor data to Earth Command. Estimated delivery: 4.5 years.</li>
+        </ul>
+
+        <p style="text-align: center; margin-top: 40px; font-size: 0.7em; color: #88FFCC;">
+            [EOF] End of Transmission. This page demonstrates **Responsive Web Design**, **Creative CSS**, and **Basic JavaScript Interactivity** for the ISTE application.
+            <br>
+            <a href="[PASTE YOUR LIVE GITHUB PAGES URL HERE]">VIEW LIVE DEPLOYMENT</a>
+        </p>
+
+    </div>
+    
+    <script>
+        function updateLog() {
+            const selectedDate = document.getElementById('missionDate').value;
+            const logOutput = document.getElementById('logOutput');
+            
+            let newLogContent = '';
+            const randomSol = Math.floor(Math.random() * 100 + 900);
+
+            if (selectedDate === '2025-09-15') {
+                // Specific, impressive log entry for a key date
+                newLogContent = '<p style="color: #FFD700;">// LOG RETRIEVED: SOL 950 - Major Find!</p>' +
+                                '<ul style="list-style-type: \'>> \'; padding-left: 20px;">' +
+                                '<li>**[ACTION]** Initiated drill sequence on "Elysium" rock sample.</li>' +
+                                '<li>**[STATUS]** Primary analysis indicates **evidence of ancient flowing water**.</li>' +
+                                '</ul>';
+            } else if (selectedDate) {
+                // Default routine message for other dates
+                newLogContent = '<p style="color: #00BFFF;">// LOG RETRIEVED: Sol ' + randomSol + '</p>' +
+                                '<p>Routine environmental check complete. No anomalies detected. (Date: ' + selectedDate + ')</p>';
+            } else {
+                 // Default loading message
+                newLogContent = 'Please select a date from the calendar to view the historical log.';
+            }
+
+            logOutput.innerHTML = newLogContent;
+        }
+        
+        // Sets the default message when the page first loads
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('logOutput').innerHTML = 'Please select a date from the calendar to view the historical log.';
+        });
+    </script>
+</body>
+</html>
